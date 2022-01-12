@@ -1,0 +1,10 @@
+{
+  "general": {
+    "noInternetHeader": "Žádné přípojení k Internetu",
+    "noInternetMessage": "Prosím zkotrolujte vaše připojení"
+  },
+  "login": {
+    "header": "Device Checker",
+    "buttonTitle": "Přihlásit se"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "228381964111",
+    "project_id": "etnetera",
+    "storage_bucket": "etnetera.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:228381964111:android:067df7b37b006dce81b73a",
+        "android_client_info": {
+          "package_name": "cz.etnetera.devicechecker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "aaa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBM4l7n_We2l4ZIZUyY4_YupPkDKQZJcEs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "aaa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

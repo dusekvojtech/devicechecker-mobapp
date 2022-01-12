@@ -1,0 +1,10 @@
+{
+  "general": {
+    "noInternetHeader": "Internet Connection Problem",
+    "noInternetMessage": "Please check your network connection"
+  },
+  "login": {
+    "header": "Device Checker",
+    "buttonTitle": "Sing in"
+  }
+}
