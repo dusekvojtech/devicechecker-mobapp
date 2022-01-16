@@ -12,9 +12,7 @@ const useI18n = () => {
       i18n.fallbacks = true;
       i18n.defaultLocale = "en";
       i18n.translations = {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         en: translationEN,
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         cs: translationCS,
       };
     };

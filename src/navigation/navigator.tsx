@@ -1,25 +1,27 @@
 import React from "react";
-import { Platform } from "react-native";
+import { Platform, TouchableOpacity } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useTheme } from "@react-navigation/native";
-import { FontAwesome } from "@expo/vector-icons";
+import { FontAwesome, MaterialIcons } from "@expo/vector-icons";
+import i18n from "i18n-js";
 
-import loadedAtom from "atoms/loadedApp";
+import { iconSizes } from "constants/sizes";
+import { handleLogout } from "services/rest";
+import useAuthUser from "hooks/useAuthUser";
+import userAtom from "atoms/user";
+import ROLE from "constants/roles";
 import { useRecoilState } from "recoil";
 import SignIn from "../containers/Login";
-// import CreateAccount from "../screens/CreateAccount";
-// import ProductSearch from "../screens/ProductSearch";
-// import ProductInfo from "../screens/ProductInfo";
 import Home from "../containers/Home";
-import Profile from "../containers/Tutorial";
-// import Details from "../screens/Details";
+import AddDevice from "../containers/AddDevice";
+import Profile from "../containers/Profile";
 
 const RootStack = createStackNavigator();
 
 const AuthStack = createStackNavigator();
 const HomeStack = createStackNavigator();
-const ProductStack = createStackNavigator();
+const AddDeviceStack = createStackNavigator();
 const ProfileStack = createStackNavigator();
 
 const Tabs = createBottomTabNavigator();
@@ -30,11 +32,7 @@ const AuthStackScreen = () => (
       headerShown: false,
     }}
   >
-    <AuthStack.Screen
-      name="SignIn"
-      component={SignIn}
-      options={{ title: "Sign In" }}
-    />
+    <AuthStack.Screen name="SignIn" component={SignIn} />
   </AuthStack.Navigator>
 );
 
@@ -52,26 +50,18 @@ const HomeStackScreen = () => (
       headerTintColor: useTheme().colors.secondaryText,
     }}
   >
-    <HomeStack.Screen name="Home" component={Home} />
-    {/* <HomeStack.Screen
-      name="Details"
-      component={Details}
-      options={({ route }) => ({
-        title: route.params.name,
-      })}
-    /> */}
+    <HomeStack.Screen
+      name="Home"
+      component={Home}
+      options={{
+        title: i18n.t("home.header"),
+      }}
+    />
   </HomeStack.Navigator>
 );
 
-// const ProductStackScreen = () => (
-//   <ProductStack.Navigator>
-//     <ProductStack.Screen name="Product Search" component={ProductSearch} />
-//     <ProductStack.Screen name="ProductInfo" component={ProductInfo} />
-//   </ProductStack.Navigator>
-// );
-
-const ProfileStackScreen = () => (
-  <ProfileStack.Navigator
+const AddDeviceStackScreen = () => (
+  <AddDeviceStack.Navigator
     screenOptions={{
       headerStyle: {
         backgroundColor: useTheme().colors.secondary,
@@ -84,13 +74,63 @@ const ProfileStackScreen = () => (
       headerTintColor: useTheme().colors.secondaryText,
     }}
   >
-    <ProfileStack.Screen name="Profile" component={Profile} />
-  </ProfileStack.Navigator>
+    <AddDeviceStack.Screen
+      name="Add Device"
+      component={AddDevice}
+      options={{
+        title: i18n.t("addDevice.header"),
+      }}
+    />
+  </AddDeviceStack.Navigator>
 );
+
+const ProfileStackScreen = () => {
+  const { colors } = useTheme();
+  const [, setUser] = useRecoilState(userAtom);
+  return (
+    <ProfileStack.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: colors.secondary,
+          elevation: 0,
+          shadowColor: "transparent",
+        },
+        headerTitleStyle: {
+          fontFamily: "roboto-bold",
+        },
+        headerTintColor: colors.secondaryText,
+      }}
+    >
+      <ProfileStack.Screen
+        name="Profile"
+        component={Profile}
+        options={{
+          title: i18n.t("profile.header"),
+          headerRight: () => (
+            <TouchableOpacity
+              style={{ marginRight: 10 }}
+              onPress={() => {
+                setUser(null);
+                void handleLogout();
+              }}
+            >
+              <MaterialIcons
+                name="logout"
+                size={iconSizes.middleSize}
+                color={colors.primaryText}
+              />
+            </TouchableOpacity>
+          ),
+        }}
+      />
+    </ProfileStack.Navigator>
+  );
+};
 
 const TabsScreen = () => {
   const activeColor = useTheme().colors.primaryText;
   const passiveColor = useTheme().colors.passive;
+  const [user] = useRecoilState(userAtom);
 
   const focusedIcon = (focus: boolean): string =>
     focus ? activeColor : passiveColor;
@@ -112,12 +152,27 @@ const TabsScreen = () => {
           tabBarIcon: (tabInfo) => (
             <FontAwesome
               name="home"
-              size={30}
+              size={iconSizes.basicSize}
               color={focusedIcon(tabInfo.focused)}
             />
           ),
         }}
       />
+      {user?.type === ROLE.Admin && (
+        <Tabs.Screen
+          name="AddDevice"
+          component={AddDeviceStackScreen}
+          options={{
+            tabBarIcon: (tabInfo) => (
+              <FontAwesome
+                name="plus-square"
+                size={iconSizes.basicSize}
+                color={focusedIcon(tabInfo.focused)}
+              />
+            ),
+          }}
+        />
+      )}
       <Tabs.Screen
         name="Profile"
         component={ProfileStackScreen}
@@ -125,7 +180,7 @@ const TabsScreen = () => {
           tabBarIcon: (tabInfo) => (
             <FontAwesome
               name="user-circle"
-              size={30}
+              size={iconSizes.basicSize}
               color={focusedIcon(tabInfo.focused)}
             />
           ),
@@ -135,9 +190,9 @@ const TabsScreen = () => {
   );
 };
 
-export const RootStackScreen = ({ login }: { login: boolean }) => (
+export const RootStackScreen = ({ logged }: { logged: boolean }) => (
   <RootStack.Navigator headerMode="none">
-    {login ? (
+    {logged ? (
       <RootStack.Screen
         name="App"
         component={TabsScreen}
@@ -158,8 +213,9 @@ export const RootStackScreen = ({ login }: { login: boolean }) => (
 );
 
 const RootNavigator = () => {
-  const [loaded] = useRecoilState(loadedAtom);
-  return <RootStackScreen login={loaded} />;
+  const [user] = useRecoilState(userAtom);
+  useAuthUser();
+  return <RootStackScreen logged={!!user} />;
 };
 
 export default RootNavigator;

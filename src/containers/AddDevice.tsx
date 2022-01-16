@@ -6,11 +6,11 @@ import { useRecoilState } from "recoil";
 import userAtom from "atoms/user";
 import LoadingComponent from "ui-components/Loading";
 
-const HomeScreen: FC = () => {
+const AddDeviceScreen: FC = () => {
   const navigation = useNavigation();
   const [user, setUser] = useRecoilState(userAtom);
 
   return <View />;
 };
 
-export default HomeScreen;
+export default AddDeviceScreen;

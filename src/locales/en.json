@@ -1,10 +1,23 @@
 {
   "general": {
     "noInternetHeader": "Internet Connection Problem",
-    "noInternetMessage": "Please check your network connection"
+    "noInternetMessage": "Please check your network connection",
+    "emptyField": "Empty field",
+    "invalidEmail": "Invalid email"
   },
   "login": {
     "header": "Device Checker",
-    "buttonTitle": "Sing in"
+    "buttonTitle": "Sing in",
+    "email": "E-mail",
+    "password": "Password"
+  },
+  "home": {
+    "header": "Devices"
+  },
+  "addDevice": {
+    "header": "Add Device"
+  },
+  "profile": {
+    "header": "Profile"
   }
 }

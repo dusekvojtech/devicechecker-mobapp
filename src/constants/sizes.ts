@@ -4,8 +4,11 @@ const iconSizes = {
   smallSize: 20,
 };
 
-const inputSizes = {
-  maxLength: 50,
+const fontSizes = {
+  basicSize: 17,
+  largeSize: 33,
+  middleSize: 15,
+  smallSize: 12,
 };
 
 const radiusSizes = {
@@ -14,4 +17,4 @@ const radiusSizes = {
   largeRadius: 40,
 };
 
-export { iconSizes, inputSizes, radiusSizes };
+export { iconSizes, radiusSizes, fontSizes };

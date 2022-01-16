@@ -2,8 +2,8 @@ import Constants from "expo-constants";
 
 const ENV = {
   dev: {
-    DEFAULT_EMAIL: "test",
-    DEFAULT_PASSWORD: "test",
+    DEFAULT_EMAIL: "gandalf.the.grey@etnetera.cz",
+    DEFAULT_PASSWORD: "wh1tew1zard",
     API_URL: "",
   },
   stage: {

@@ -8,11 +8,12 @@ const Button = s.TouchableOpacity<{
 }>`
   flex-Direction: row;
   padding: 15px;
-  margin: 4px 10px 7px 10px;
+  margin-vertical: 4px;
   background: ${(props) => props.background}
   border-radius: ${(props) => props.borderRadius}px;
   align-items: center;
   justify-content: ${(props) => props.justifyContent}
+  margin-vertical: 10px;
   `;
 
 const TextButton = s.TouchableOpacity<{

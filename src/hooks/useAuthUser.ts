@@ -1,22 +1,22 @@
 import { useEffect } from "react";
-import { useNavigation } from "@react-navigation/native";
+import { useRecoilState } from "recoil";
 
-const useAuthUser = (screen: string) => {
-  const navigation = useNavigation();
+import { getUser } from "../services/rest";
+import userAtom from "../atoms/user";
+import loadedAppAtom from "../atoms/loadedApp";
+
+const useAuthUser = () => {
+  const [, setUser] = useRecoilState(userAtom);
+  const [, setLoadedApp] = useRecoilState(loadedAppAtom);
+
   useEffect(() => {
     const checkUser = async () => {
-      try {
-        const user = null; // TODO auth hook
-        if (user) {
-          navigation.navigate(screen);
-        }
-      } catch (error) {
-        navigation.navigate("Login");
-        console.warn(error);
-      }
+      const user = await getUser();
+      setUser(user);
+      setLoadedApp(true);
     };
     void checkUser();
-  }, [navigation, screen]);
+  }, [setLoadedApp, setUser]);
 };
 
 export default useAuthUser;

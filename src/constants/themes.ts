@@ -10,6 +10,7 @@ export const DarkTheme = {
     passive: "#3c4147",
     surface: "#22262c",
     text: "#FFFFFF",
+    transparentBackground: "rgba(25, 29, 34, 0.9)",
     // default type options
     card: "#000000",
     notification: "#000000",
@@ -28,6 +29,7 @@ export const DefaultTheme = {
     passive: "#a8a8a8",
     surface: "#FFFFFF",
     text: "#FFFFFF",
+    transparentBackground: "rgba(248, 249, 250, 0.9)",
     // default type options
     card: "#FFFFFF",
     notification: "#FFFFFF",

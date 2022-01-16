@@ -1,9 +1,9 @@
 import { atom } from "recoil";
-// import { ROLE } from '../routing/roles';
+import ROLE from "../constants/roles";
 
 export type User = {
   id: string;
-  type: string;
+  type: ROLE;
   login: string;
   name: string;
   token: string;

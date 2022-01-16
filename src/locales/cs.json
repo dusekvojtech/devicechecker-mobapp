@@ -1,10 +1,23 @@
 {
   "general": {
     "noInternetHeader": "Žádné přípojení k Internetu",
-    "noInternetMessage": "Prosím zkotrolujte vaše připojení"
+    "noInternetMessage": "Prosím zkotrolujte vaše připojení",
+    "emptyField": "Prázdné pole",
+    "invalidEmail": "Nevalidní formát e-mailu"
   },
   "login": {
     "header": "Device Checker",
-    "buttonTitle": "Přihlásit se"
+    "buttonTitle": "Přihlásit se",
+    "email": "E-mail",
+    "password": "Heslo"
+  },
+  "home": {
+    "header": "Zařízení"
+  },
+  "addDevice": {
+    "header": "Přidat zařízení"
+  },
+  "profile": {
+    "header": "Profil"
   }
 }
