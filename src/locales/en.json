@@ -12,7 +12,10 @@
     "password": "Password"
   },
   "home": {
-    "header": "Devices"
+    "header": "Devices",
+    "book": "Book",
+    "return": "Return",
+    "booked": "Booked"
   },
   "addDevice": {
     "header": "Add Device"

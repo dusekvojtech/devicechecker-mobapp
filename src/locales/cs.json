@@ -12,7 +12,10 @@
     "password": "Heslo"
   },
   "home": {
-    "header": "Zařízení"
+    "header": "Zařízení",
+    "book": "Půjčit",
+    "return": "Vrátit",
+    "booked": "Půjčeno"
   },
   "addDevice": {
     "header": "Přidat zařízení"

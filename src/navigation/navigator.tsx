@@ -117,7 +117,7 @@ const ProfileStackScreen = () => {
               <MaterialIcons
                 name="logout"
                 size={iconSizes.middleSize}
-                color={colors.primaryText}
+                color={colors.secondaryText}
               />
             </TouchableOpacity>
           ),
