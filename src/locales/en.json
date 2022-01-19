@@ -15,10 +15,19 @@
     "header": "Devices",
     "book": "Book",
     "return": "Return",
-    "booked": "Booked"
+    "booked": "Booked",
+    "osFilter": "Filter by OS",
+    "vendorFilter": "Filter by vendor"
   },
   "addDevice": {
-    "header": "Add Device"
+    "header": "Add Device",
+    "identifier": "Identifier",
+    "model": "Model",
+    "osVersion": "OS version",
+    "imageUrl": "Image URL",
+    "create": "Create device",
+    "osSelect": "Select OS",
+    "vendorSelect": "Select vendor"
   },
   "profile": {
     "header": "Profile"

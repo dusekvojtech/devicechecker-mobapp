@@ -15,10 +15,19 @@
     "header": "Zařízení",
     "book": "Půjčit",
     "return": "Vrátit",
-    "booked": "Půjčeno"
+    "booked": "Půjčeno",
+    "osFilter": "Filtorvat OS",
+    "vendorFilter": "Filtorvat výrobce"
   },
   "addDevice": {
-    "header": "Přidat zařízení"
+    "header": "Přidat zařízení",
+    "identifier": "Identifikator",
+    "model": "Model",
+    "osVersion": "OS verze",
+    "imageUrl": "URL obrázku",
+    "create": "Vytvořit zařízení",
+    "osSelect": "Vybrat OS",
+    "vendorSelect": "Vybrat výrobce"
   },
   "profile": {
     "header": "Profil"

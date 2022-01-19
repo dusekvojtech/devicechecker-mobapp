@@ -1,4 +1,5 @@
 import React, { FC, useState, useEffect } from "react";
+import i18n from "i18n-js";
 import { FlatList } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import { useRecoilState } from "recoil";
@@ -21,6 +22,7 @@ const HomeScreen: FC = () => {
   const [originalDevices, setOriginalDevices] = useState<Device[]>([]);
   const [filter, setFilter] = useState<Filter>({ os: "", vendor: "" });
   const [loading, setLoading] = useState<boolean>(false);
+  const [refresh, setRefresh] = useState<boolean>(false);
   const { colors } = useTheme();
 
   const handleFilter = (value: string, name: string) => {
@@ -46,9 +48,11 @@ const HomeScreen: FC = () => {
       const data = await getDevices();
       setDevices(data);
       setOriginalDevices(data);
+      setRefresh(false);
+      setFilter((state) => ({ ...state, os: "", vendor: "" }));
     };
     void fetchDevices();
-  }, []);
+  }, [refresh]);
 
   const updateDevice = (device: Device) => {
     // update rendered state
@@ -74,6 +78,8 @@ const HomeScreen: FC = () => {
       />
       <FlatList
         data={devices}
+        onRefresh={() => setRefresh(!refresh)}
+        refreshing={refresh}
         ListHeaderComponent={
           <Row>
             <Picker
@@ -82,7 +88,7 @@ const HomeScreen: FC = () => {
               style={{ flex: 1 }}
               itemStyle={{ color: colors.primaryText }}
             >
-              <Picker.Item label="Filter by OS" value="" />
+              <Picker.Item label={i18n.t("home.osFilter")} value="" />
               <Picker.Item label="iOS" value="IOS" />
               <Picker.Item label="Android" value="ANDROID" />
               <Picker.Item label="Windows" value="WINDOWS" />
@@ -93,7 +99,7 @@ const HomeScreen: FC = () => {
               style={{ flex: 1 }}
               itemStyle={{ color: colors.primaryText }}
             >
-              <Picker.Item label="Filter by vendor" value="" />
+              <Picker.Item label={i18n.t("home.vendorFilter")} value="" />
               <Picker.Item label="Apple" value="APPLE" />
               <Picker.Item label="Samsung" value="SAMSUNG" />
               <Picker.Item label="Huawei" value="HUAWEI" />

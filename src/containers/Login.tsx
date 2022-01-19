@@ -100,7 +100,7 @@ const Login: FC = () => {
         />
         <Heading color={colors.primaryText}>{i18n.t("login.header")}</Heading>
       </Row>
-      <FormContainer>
+      <FormContainer extraHeight={300}>
         <FormTextInput
           ref={emailRef}
           value={email.value}
