@@ -1,16 +1,12 @@
 Expo project
-
-Build and publish dev
-expo build:ios --release-channel dev
-expo build:android --release-channel dev
-expo publish --release-channel dev
-
-Build stage
-expo build:ios --release-channel stage
-expo build:android --release-channel stage
-expo publish --release-channel stage
-
-Build prod
-expo build:ios --release-channel prod
-expo build:android --release-channel prod
-expo publish --release-channel prod
+Upgrade Expo project
+sudo npm install -g expo-cli
+expo upgrade
+yarn upgrade
+remove node_modules
+yarn
+yarn start -->> yarn add expo-library (missing expo libraries after compilation error)
+LOCAL
+expo build:ios
+expo build:android
+expo publish
